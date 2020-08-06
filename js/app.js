@@ -11,12 +11,25 @@ function ObjectCreation(min, max, ave) {
 
 ObjectCreation.prototype.custPerHour = function (maximum) {
   return Math.floor(Math.random() * Math.floor(maximum));
-},
+};
 ObjectCreation.prototype.cookiesPerHour = function() {
   for (var i = 0; i < hoursPerDay.length; i++) {
     var cookiesThisHour = (this.aveOrder * this.custPerHour(9));
     this.hourNums.push(Math.round(cookiesThisHour));
   }
+};
+ObjectCreation.prototype.fillTable = function() {
+  var tr = document.createElement('tr');
+  tbody.append(tr);
+  th.textContent = 'newStore';
+  tr.append(th);
+  for (var j = 0; j < newStore.hourNums.length; j++) {
+    console.log(j);
+    var td = document.createElement('td');
+    td.textContent = newStore.hourNums[j];
+    tr.append(td);
+  }
+  console.log(newStore.hourNums);
 };
 var newStore = new ObjectCreation(2, 16, 4.6);
 console.log(newStore);
@@ -25,7 +38,7 @@ console.log(newStore);
 
 var main = document.getElementById('main');
 var article = document.createElement('article');
-var h2 = document.createElement('h2').textContent = 'Cookies per hour';
+var h2 = document.createElement('h2');
 var table = document.createElement('table');
 var thead = document.createElement('thead');
 var th = document.createElement('th');
@@ -33,6 +46,7 @@ var tbody = document.createElement('tbody');
 // var tfoot = document.createElement('tfoot');
 newStore.cookiesPerHour();
 main.append(article);
+h2.textContent = 'Cookies per hour';
 article.append(h2);
 article.append(table);
 table.append(thead);
@@ -46,18 +60,3 @@ table.append(tbody);
 // tfoot.textContent = 'sum of hours';
 // table.append(tfoot);
 
-// table body
-
-function fillTable() {
-  var tr = document.createElement('tr');
-  tbody.append(tr);
-  th.textContent = 'Seattle';
-  tr.append(th);
-  for (var j = 0; j < newStore.hourNums.length; j++) {
-    console.log(j);
-    var td = document.createElement('td');
-    td.textContent = newStore.hourNums[j];
-    tr.append(td);
-  }
-  console.log(newStore.hourNums);
-}
