@@ -80,6 +80,25 @@ var lima = {
   }
 };
 
+function ObjectCreation(min, max, ave) {
+  this.minCust = min;
+  this.maxCust = max;
+  this.aveOrder = ave;
+  this.hourNums = [];
+}
+
+ObjectCreation.prototype.custPerHour = function(maximum) {
+  return Math.floor(Math.random() * Math.floor(maximum));
+},
+ObjectCreation.prototype.cookiesPerHour = function() {
+  for (var i = 0; i < 14; i++) {
+    var cookiesThisHour = (this.aveOrder * this.custPerHour(9));
+    this.hourNums.push(cookiesThisHour);
+  }
+};
+var newStore = new ObjectCreation(2, 16, 4.6);
+console.log(newStore);
+
 function createArticle() {
   var city = prompt('name of location');
   seattle.cookiesPerHour();
