@@ -1,5 +1,7 @@
 'use strict';
 
+var hoursPerDay = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
+
 var seattle = {
   minCust: 23,
   maxCust: 65,
@@ -8,8 +10,8 @@ var seattle = {
     return Math.floor(Math.random() * Math.floor(maximum));
   },
   hourNums: [],
-  cookiesPerHour: function() {
-    for (var i = 0; i < 14; i++) {
+  cookiesPerHour: function () {
+    for (var i = 0; i < hoursPerDay.length; i++) {
       var cookiesThisHour = (this.aveOrder * this.custPerHour(9));
       this.hourNums.push(cookiesThisHour);
     }
@@ -24,7 +26,7 @@ var tokyo = {
     return Math.floor(Math.random() * Math.floor(maximum));
   },
   hourNums: [],
-  cookiesPerHour: function() {
+  cookiesPerHour: function () {
     for (var i = 0; i < 14; i++) {
       var cookiesThisHour = (this.aveOrder * this.custPerHour(9));
       this.hourNums.push(cookiesThisHour);
@@ -40,7 +42,7 @@ var dubai = {
     return Math.floor(Math.random() * Math.floor(maximum));
   },
   hourNums: [],
-  cookiesPerHour: function() {
+  cookiesPerHour: function () {
     for (var i = 0; i < 14; i++) {
       var cookiesThisHour = (this.aveOrder * this.custPerHour(9));
       this.hourNums.push(cookiesThisHour);
@@ -56,7 +58,7 @@ var paris = {
     return Math.floor(Math.random() * Math.floor(maximum));
   },
   hourNums: [],
-  cookiesPerHour: function() {
+  cookiesPerHour: function () {
     for (var i = 0; i < 14; i++) {
       var cookiesThisHour = (this.aveOrder * this.custPerHour(9));
       this.hourNums.push(cookiesThisHour);
@@ -72,7 +74,7 @@ var lima = {
     return Math.floor(Math.random() * Math.floor(maximum));
   },
   hourNums: [],
-  cookiesPerHour: function() {
+  cookiesPerHour: function () {
     for (var i = 0; i < 14; i++) {
       var cookiesThisHour = (this.aveOrder * this.custPerHour(9));
       this.hourNums.push(cookiesThisHour);
@@ -87,11 +89,11 @@ function ObjectCreation(min, max, ave) {
   this.hourNums = [];
 }
 
-ObjectCreation.prototype.custPerHour = function(maximum) {
+ObjectCreation.prototype.custPerHour = function (maximum) {
   return Math.floor(Math.random() * Math.floor(maximum));
 },
-ObjectCreation.prototype.cookiesPerHour = function() {
-  for (var i = 0; i < 14; i++) {
+ObjectCreation.prototype.cookiesPerHour = function () {
+  for (var i = 0; i < hoursPerDay.length; i++) {
     var cookiesThisHour = (this.aveOrder * this.custPerHour(9));
     this.hourNums.push(cookiesThisHour);
   }
@@ -99,20 +101,43 @@ ObjectCreation.prototype.cookiesPerHour = function() {
 var newStore = new ObjectCreation(2, 16, 4.6);
 console.log(newStore);
 
-function createArticle() {
-  var city = prompt('name of location');
-  seattle.cookiesPerHour();
-  var main = document.getElementById('main');
-  var article = document.createElement('article');
-  main.append(article);
-  var h2 = document.createElement('h2').textContent = city;
-  article.append(h2);
-  var ul = document.createElement('ul');
-  article.append(ul);
+// table creation
+
+var main = document.getElementById('main');
+var article = document.createElement('article');
+var h2 = document.createElement('h2').textContent = 'Cookies per hour';
+var table = document.createElement('table');
+var thead = document.createElement('thead');
+var th = document.createElement('th');
+var tbody = document.createElement('tbody');
+// var tfoot = document.createElement('tfoot');
+seattle.cookiesPerHour();
+main.append(article);
+article.append(h2);
+article.append(table);
+table.append(thead);
+thead.append(th);
+for (var i = 0; i <= hoursPerDay.length; i++) {
+  th = document.createElement('th');
+  th.textContent = hoursPerDay[i];
+  thead.append(th);
+}
+table.append(tbody);
+// tfoot.textContent = 'sum of hours';
+// table.append(tfoot);
+
+// table body
+
+function fillTable() {
+  var tr = document.createElement('tr');
+  tbody.append(tr);
+  th.textContent = 'Seattle';
+  tr.append(th);
   for (var j = 0; j < seattle.hourNums.length; j++) {
-    var li = document.createElement('li').textContent = seattle.hourNums[j];
-    var br = document.createElement('br');
-    ul.append(li);
-    ul.append(br);
+    console.log(j);
+    var td = document.createElement('td');
+    td.textContent = seattle.hourNums[j];
+    tr.append(td);
   }
+  console.log(seattle.hourNums);
 }
