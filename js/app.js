@@ -18,7 +18,7 @@ article.append(h2);
 article.append(table);
 table.append(thead);
 thead.append(th);
-for (var i = 0; i <= hoursPerDay.length; i++) {
+for (var i = 0; i <= hoursPerDay.length - 1; i++) {
   th = document.createElement('th');
   th.textContent = hoursPerDay[i];
   thead.append(th);
@@ -35,6 +35,7 @@ function ObjectCreation(min, max, ave, city) {
   this.aveOrder = ave;
   this.name = city;
   this.hourNums = [];
+  this.hourSum = [];
 }
 
 ObjectCreation.prototype.custPerHour = function (maximum) {
@@ -52,19 +53,33 @@ ObjectCreation.prototype.fillTable = function() {
   var th = document.createElement('th');
   th.textContent = this.name;
   tr.append(th);
+  var dailyTotal = 0;
   for (var j = 0; j < this.hourNums.length; j++) {
     var td = document.createElement('td');
     td.textContent = this.hourNums[j];
     tr.append(td);
+    dailyTotal += this.hourNums[j];
   }
+  this.hourNums.push(dailyTotal);
   td = document.createElement('td');
-  var dailyTotal = 0;
-  for (var k = 0; k < this.hourNums.length; k++) {
-    dailyTotal += parseInt(this.hourNums[k]);
-  }
   td.textContent = dailyTotal;
   tr.append(td);
 };
+function hourlySum(){
+  var tr = document.createElement('tr');
+  tbody.append(tr);
+  var th = document.createElement('th');
+  th.textContent = 'Hourly sum';
+  tr.append(th);
+  var hourlySubTotal = [];
+  for (var j = 0; j < hoursPerDay.length; j++) {
+    var hourlyTotal = Seattle.hourNums[j] + Tokyo.hourNums[j] + Dubai.hourNums[j] + Paris.hourNums[j] + Lima.hourNums[j];
+    hourlySubTotal.push(hourlyTotal);
+    var td = document.createElement('td');
+    td.textContent = hourlySubTotal[j];
+    tr.append(td);
+  }
+}
 var Seattle = new ObjectCreation(23, 65, 6.3, 'Seattle');
 Seattle.cookiesPerHour();
 Seattle.fillTable();
@@ -80,4 +95,4 @@ Paris.fillTable();
 var Lima = new ObjectCreation(2, 16, 4.6, 'Lima');
 Lima.cookiesPerHour();
 Lima.fillTable();
-
+hourlySum();
