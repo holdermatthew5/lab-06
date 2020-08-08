@@ -87,11 +87,13 @@ function createArticle() {
   var article = document.createElement('article');
   main.append(article);
   var h2 = document.createElement('h2').textContent = city;
-  article.append('h2');
+  article.append(h2);
   var ul = document.createElement('ul');
-  article.append('ul');
+  article.append(ul);
   for (var j = 0; j < seattle.hourNums.length; j++) {
     var li = document.createElement('li').textContent = seattle.hourNums[j];
-    ul.append('li');
+    var br = document.createElement('br');
+    ul.append(li);
+    ul.append(br);
   }
 }
