@@ -58,9 +58,11 @@ ObjectCreation.prototype.fillTable = function() {
     tr.append(td);
   }
   td = document.createElement('td');
+  var dailyTotal = 0;
   for (var k = 0; k < this.hourNums.length; k++) {
-    td.textContent += parseInt(this.hourNums[k]);
+    dailyTotal += parseInt(this.hourNums[k]);
   }
+  td.textContent = dailyTotal;
   tr.append(td);
 };
 var Seattle = new ObjectCreation(23, 65, 6.3, 'Seattle');
