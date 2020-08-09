@@ -1,0 +1,32 @@
+body {
+  background-image: url(../images/salmon-cookies.jpg);
+  background-size: 350px;
+  width: 900px;
+  margin: auto;
+}
+
+header {
+  background-color: white;
+  margin: 20px 10px 30px 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+main {
+  background-color: white;
+  margin: 20px 10px 30px 10px;
+  padding: 20px;
+}
+
+h2 {
+  margin: 20px 0px 20px 0px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+th {
+  background-color: rgba(255, 105, 180, 0.596);
+  padding: 3px;
+  border: 1px solid grey;
+  margin: 2px 20px 2px 2px;
+}
