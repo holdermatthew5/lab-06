@@ -28,5 +28,9 @@ th {
   background-color: rgba(255, 105, 180, 0.596);
   padding: 3px;
   border: 1px solid grey;
-  margin: 2px 20px 2px 2px;
+  margin: 2px 2px 2px 2px;
+}
+
+td {
+  text-align: center;
 }
