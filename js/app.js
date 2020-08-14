@@ -100,6 +100,28 @@ function hourlySum() {
 }
 
 // replace footer
+function hourlySumReplacement() {
+  tfoot.remove();
+  var tfooter = document.createElement('tfoot');
+  table.append(tfooter);
+  var tr = document.createElement('tr');
+  tfooter.append(tr);
+  var th = document.createElement('th');
+  th.textContent = 'Hourly sum';
+  tr.append(th);
+  var hourlySubTotal = [];
+  var hourlyTotal = 0;
+  for (var j = 0; j < hoursPerDay.length; j++) {
+    for (var i = 0; i < hourlySumArr.length; i++) {
+      hourlyTotal += hourlySumArr[i].hourNums[j];
+    }
+    hourlySubTotal.push(hourlyTotal);
+    var td = document.createElement('td');
+    td.textContent = hourlySubTotal[j];
+    tr.append(td);
+  }
+
+}
 
 // delete footer to add last row and call footer again
 
@@ -115,5 +137,6 @@ function useForm(event) {
   var maxInput = event.target.maxcust.value;
   var aveInput = event.target.aveorder.value;
   new ObjectCreation(minInput, maxInput, aveInput, nameInput);
+  hourlySumReplacement();
 }
 hourlySum();
