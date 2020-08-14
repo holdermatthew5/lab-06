@@ -12,6 +12,20 @@ header {
   text-align: center;
 }
 
+header a {
+  float: right;
+  margin: 0px 20px 5px 0px;
+  padding: 5px 10px 5px 10px;
+  background-color: lightgray;
+  border-radius: 5px;
+  text-decoration: none;
+  color: black;
+}
+
+header>a:hover {
+  background-color: rgb(180, 179, 179);
+}
+
 main {
   background-color: white;
   margin: 20px 10px 30px 10px;
