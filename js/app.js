@@ -87,8 +87,8 @@ function hourlySum() {
   th.textContent = 'Hourly sum';
   tr.append(th);
   var hourlySubTotal = [];
-  var hourlyTotal = 0;
   for (var j = 0; j < hoursPerDay.length; j++) {
+    var hourlyTotal = 0;
     for (var i = 0; i < hourlySumArr.length; i++) {
       hourlyTotal += hourlySumArr[i].hourNums[j];
     }
@@ -103,9 +103,8 @@ function hourlySum() {
 // updates footer
 function updateTfoot() {
   var hourlySubTotal = [];
-  var hourlyTotal = 0;
   for (var j = 0; j < hoursPerDay.length; j++) {
-    // var reference = 'td' + j;
+    var hourlyTotal = 0;
     for (var i = 0; i < hourlySumArr.length; i++) {
       hourlyTotal += hourlySumArr[i].hourNums[j];
     }
