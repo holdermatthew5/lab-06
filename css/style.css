@@ -48,3 +48,7 @@ th {
 td {
   text-align: center;
 }
+
+table {
+  font-family: sans-serif;
+}
